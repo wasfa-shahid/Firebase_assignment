@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Additm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="cointainer_additem">
+<header class="header_profile">
+<div class="alignment" >
+<img src="assets/profile.png" alt="profile" >
+<div>
+    <p class="name_profile">Mr. Ahmed </p>
+    <p class="rights_profile">Admin</p>
+</div>
+
+</div>
+<i class="fa-solid fa-receipt fa-2x"></i>
+</header>
+
+<div class="body_additem">
+
+<p class="heading">Add New Item</p>
+<div style="display: flex;flex-direction: column;">
+<input type="file" class="input_fields"/>
+<input type="text" class="input_fields" placeholder="Item name" id="item_name" />
+<input type="text" placeholder="Category" class="input_fields" id="category" />
+<textarea placeholder="Describe item" class="input_fields" cols="8" id="describe">
+</textarea>
+<div>
+<label class="label_name">
+   Unit Name
+</label>
+<input type="text" placeholder="Pcs. / Kg / dozen" class="input_fields" id="unitname"/>
+</div>
+<div>
+    <label  class="label_name">
+        Unit Price:
+    </label>
+    <input type="number" placeholder=" $3.22" class="input_fields" id="price"/>
+    </div>
+
+    <button class="add" id="add_product">Add Product</button>
+</div>
+</div>
+
+    </div>
+    <div class="footer">
+        <a href="Home.html"> <i class="fa-solid fa-house fa-2x icon"></i></a>  
+        <a href="Additem.html">   <i class="fa-solid fa-plus fa-2x icon"></i></a>
+        <i class="fa-solid fa-user fa-2x icon"></i>
+      </div>
+
+
+
+
+<!-- import and config section -->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCgdS66n6zsQLMwJeZdvKdt0on-lHzBUEE",
+      authDomain: "fir-assignment-a4ff5.firebaseapp.com",
+      projectId: "fir-assignment-a4ff5",
+      storageBucket: "fir-assignment-a4ff5.appspot.com",
+      messagingSenderId: "162057083582",
+      appId: "1:162057083582:web:30d7249898faa282325cef"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase();
+
+    function Add() {
+      var itemname = document.getElementById("item_name");
+      var category = document.getElementById("category");
+      var describe = document.getElementById("describe");
+      var unitname = document.getElementById("unitname");
+      var price = document.getElementById("price");
+      
+
+      set(ref(db, "Products/" + itemname.value), {
+        itemname: itemname.value,
+        category: category.value,
+        describe: describe.value,
+        unitname:unitname.value,
+        price:price.value,
+
+      })
+      .then(() => {
+        alert("Data saved successfully");
+      })
+      .catch((error) => {
+        alert("Error in sending data to the database: " + error);
+      });
+    }
+
+    var addProduct = document.getElementById("add_product");
+    addProduct.addEventListener('click', Add);
+
+  </script>
+
+
+
+</body>
+</html>

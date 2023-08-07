@@ -1,0 +1,292 @@
+@import url(https://fonts.googleapis.com/css?family=Inter);
+
+
+*
+{
+    box-sizing: border-box;
+    padding: 0%;
+    margin: 0%;
+    font-family: "Inter";
+
+}
+.container_home_body
+{
+ 
+    height: 180vh;
+    width: 100%;
+}
+.navbar
+{
+    height: 10%;
+    padding: 2px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.green_logo
+{
+    color: #61B846;
+font-family: Inter;
+font-size: 23px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; /* 108.696% */
+}
+.blue_logo
+{
+    color: #024F9D;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: 25px; /* 208.333% */
+}
+.banner_hoome
+{
+    height: 30%;
+width: 90%;
+margin-left: 5%;
+}
+.input_fields
+{
+    background-color: rgba(217, 217, 217, 0.75);;
+    display:flex;
+    height: 40px;
+   margin-top: 5px;
+   padding: 2px;
+    align-items:  center;
+    justify-content: center;
+    border-radius: 10px;
+    width: 40%;
+
+}
+.signup_input
+{
+    height: 30px;
+    border: none;
+    width: 90%;
+    background-color: transparent;
+    outline: none;
+}
+.icon
+{
+    color: gray;
+}
+.category
+{
+    color: #000;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; /* 208.333% */
+}
+.sub_body_home
+{
+    height: 35%;
+
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    overflow-y: auto;
+}
+.category{
+    margin: 20px;
+}
+.card_category
+{
+    height: 100px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.card{
+    height: 100px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.name_cat
+{
+    color: #61B846;
+}
+.item
+{
+    width: 90%;
+    height: 120px;
+ 
+    margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+.img_sizing
+{
+    height: 110px;
+    width: 200px;
+}
+.product_detail_card
+{
+    width: 80%;
+    height: 90%;
+    /* background-color:red; */
+}
+.product_
+{
+    height: 50%;
+    width: 100%;
+    /* background-color: white; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.product_name
+{
+    color: #000;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; /* 208.333% */
+}
+.product_price
+{
+    color: #000;
+text-align: right;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; /* 208.333% */
+}
+.product_detail
+{
+    color: #BFBFBF;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 12px; /* 100% */
+}
+.add_btn
+{
+    height: 55%;
+    width: 120px;
+    background-color: #61B846;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: auto;
+}
+.white
+{
+    color: white;
+    font-size: 35px;
+}
+.footer
+{
+    height: 10%;
+
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 480px) {
+    .container_home_body
+{
+
+    height: 120vh;
+    width: 100%;
+}
+    .banner_hoome
+    {
+        height: 30%;
+        
+    }
+    .input_fields
+{
+    background-color: rgba(217, 217, 217, 0.75);;
+    display:flex;
+    height: 40px;
+   margin-top: 5px;
+   padding: 2px;
+    align-items:  center;
+    justify-content: center;
+    border-radius: 10px;
+    width: 90%;
+
+}
+
+.card_category
+{
+    height: 90px;
+
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px;
+}
+.card{
+    height: 60px;
+
+    width: 80px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.img_sizing
+{
+    height: 80px;
+    width: 100px;
+}
+.item
+{
+    width: 90%;
+    height: 90px;
+
+    margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.add_btn {
+    height: 55%;
+    width: 100px;
+    background-color: #61B846;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: auto;
+}
+.white
+{
+    color: white;
+    font-size: 25px;
+}
+
+  }

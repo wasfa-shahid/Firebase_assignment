@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="container_home_body">
+    <nav class="navbar">
+        <div>
+            <p class="green_logo">SAYLANI WELFARE</p>
+            <p class="blue_logo">DISCOUNT STORE</p>
+        </div>
+        <i class="fa-solid fa-cart-shopping fa-2x"></i>
+    </nav>
+
+    <img src="assets/Grocery.svg" class="banner_hoome"/>
+    <center>
+    <div class="input_fields">
+        <i class="fa-solid fa-magnifying-glass icon"></i>
+        <input type="text" placeholder="Search by product name" class="signup_input"/>
+     
+       </div>
+    </center>
+    <p class="category">Shop by Categery</p>
+    <div  class="card_category">
+        <div class="card">
+            <img src="assets/cat1.png"/>
+            <p class="name_cat" id="name_cat">Grocery</p>
+    
+        </div>
+        
+        
+    
+       
+    </div>
+  <div class="sub_body_home">
+    
+
+<div class="item">
+    <img src="assets/product_img.png" alt="product_img"  class="img_sizing">
+    <div class="product_detail_card">
+        <div class="product_">
+            <p class="product_name" id="product_name"></p>
+            <p class="product_price" id="product_price">-</p>
+
+        </div>
+        <div class="product_">
+            <p class="product_detail" id="product_detail"></p>
+            <div class="add_btn">
+                <i class="fa-solid fa-plus  white"></i>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+  </div>
+  <div class="footer">
+    <a href="Home.html"> <i class="fa-solid fa-house fa-2x icon"></i></a>  
+    <a href="Cart.html">   <i class="fa-solid fa-cart-shopping fa-2x icon"></i></a>
+    <i class="fa-solid fa-user fa-2x icon"></i>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+    <!-- import and config section -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getDatabase, set, ref, get, child } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+      apiKey: "AIzaSyCgdS66n6zsQLMwJeZdvKdt0on-lHzBUEE",
+      authDomain: "fir-assignment-a4ff5.firebaseapp.com",
+      projectId: "fir-assignment-a4ff5",
+      storageBucket: "fir-assignment-a4ff5.appspot.com",
+      messagingSenderId: "162057083582",
+      appId: "1:162057083582:web:30d7249898faa282325cef"
+    };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+
+       
+
+        // Initialize itemname here
+        var product_name = document.getElementById('product_name');
+        var product_price = document.getElementById('product_price');
+        var product_detail = document.getElementById('product_detail');
+
+        // Define the itemname based on your needs
+        var itemname = "example_product"; // Change this to the actual product name
+     
+function DisplayData() {
+    const itemRef = ref(db, "Products");
+
+    get(itemRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+
+                const subBodyHome = document.querySelector('.sub_body_home');
+                subBodyHome.innerHTML = ""; // Clear previous content
+
+                // Loop through the data and create HTML elements for each item
+                Object.keys(data).map((key) => {
+                    const item = data[key];
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('item');
+
+                    const itemImg = document.createElement('img');
+                    itemImg.src = "assets/product_img.png";
+                    itemImg.alt = "product_img";
+                    itemImg.classList.add('img_sizing');
+
+                    const productDetailCard = document.createElement('div');
+                    productDetailCard.classList.add('product_detail_card');
+
+                    const productDiv = document.createElement('div');
+                    productDiv.classList.add('product_');
+
+                    const productName = document.createElement('p');
+                    productName.classList.add('product_name');
+                    productName.textContent = item.itemname;
+
+                    const productPrice = document.createElement('p');
+                    productPrice.classList.add('product_price');
+                    productPrice.textContent = item.price;
+
+                    productDiv.appendChild(productName);
+                    productDiv.appendChild(productPrice);
+
+                    const productDiv2 = document.createElement('div');
+                    productDiv2.classList.add('product_');
+
+                    const productDetail = document.createElement('p');
+                    productDetail.classList.add('product_detail');
+                    productDetail.textContent = item.describe;
+
+                    const addBtn = document.createElement('div');
+                    addBtn.classList.add('add_btn');
+
+                    const plusIcon = document.createElement('i');
+                    plusIcon.classList.add('fa-solid', 'fa-plus', 'white');
+
+                    productDiv2.appendChild(productDetail);
+                    addBtn.appendChild(plusIcon);
+
+                    productDetailCard.appendChild(productDiv);
+                    productDetailCard.appendChild(productDiv2);
+                    productDetailCard.appendChild(addBtn);
+
+                    itemDiv.appendChild(itemImg);
+                    itemDiv.appendChild(productDetailCard);
+
+                    subBodyHome.appendChild(itemDiv);
+                });
+            } else {
+                console.log("No data found");
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+}
+
+// Call the DisplayData function
+DisplayData();
+
+function Displaycat() {
+    const catRef = ref(db, "category");
+
+    get(catRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+
+                const cardCategory = document.querySelector('.card_category');
+                cardCategory.innerHTML = ""; // Clear previous content
+
+                // Loop through the data and create HTML elements for each category
+                Object.keys(data).map((key) => {
+                    const category = data[key];
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.classList.add('card');
+
+                    const categoryImg = document.createElement('img');
+                    categoryImg.src = "assets/cat1.png";
+
+                    const categoryName = document.createElement('p');
+                    categoryName.classList.add('name_cat');
+                    categoryName.textContent = category.category;
+
+                    categoryDiv.appendChild(categoryImg);
+                    categoryDiv.appendChild(categoryName);
+
+                    cardCategory.appendChild(categoryDiv);
+                });
+            } else {
+                console.log("No data found");
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+}
+
+// Call the Displaycat function
+Displaycat();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+</body>
+</html>

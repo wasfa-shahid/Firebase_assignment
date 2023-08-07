@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Additm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="cointainer_additem">
+        <header class="header_profile">
+            <div class="alignment">
+                <img src="assets/profile.png" alt="profile">
+                <div>
+                    <p class="name_profile">Mr. Ahmed</p>
+                    <p class="rights_profile">Admin</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-receipt fa-2x"></i>
+        </header>
+
+        <div class="body_additem">
+            <p class="heading">Add New Category</p>
+            <div style="display: flex;flex-direction: column;">
+                <input type="text" placeholder="Category" class="input_fields" id="category">
+                <button class="add" id="addcategory">Add</button>
+            </div>
+            <div class="show_category">
+                <div class="category_item">
+                    <img src="assets/categortimg.png" class="category_img" alt="category_img">
+                    <p type="text" class="category_name" id="category_name"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <a href="Home.html"><i class="fa-solid fa-house fa-2x icon"></i></a>
+        <a href="Additem.html"><i class="fa-solid fa-plus fa-2x icon"></i></a>
+        <i class="fa-solid fa-user fa-2x icon"></i>
+    </div>
+
+    <!-- import and config section -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getDatabase, set, ref, get, child } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+      apiKey: "AIzaSyCgdS66n6zsQLMwJeZdvKdt0on-lHzBUEE",
+      authDomain: "fir-assignment-a4ff5.firebaseapp.com",
+      projectId: "fir-assignment-a4ff5",
+      storageBucket: "fir-assignment-a4ff5.appspot.com",
+      messagingSenderId: "162057083582",
+      appId: "1:162057083582:web:30d7249898faa282325cef"
+    };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+
+        function Addcat() {
+            var category = document.getElementById("category");
+            set(ref(db, "category/" + category.value), {
+                category: category.value,
+            })
+            .then(() => {
+                alert("Data saved successfully");
+            })
+            .catch((error) => {
+                alert("Error in sending data to the database: " + error);
+            });
+        }
+
+        var addcategory = document.getElementById("addcategory");
+        addcategory.addEventListener('click', Addcat);
+
+        // Initialize category_name here
+        var category_name = document.getElementById('category_name');
+
+    
+
+
+        function Displaycat() {
+    const catRef = ref(db, "category");
+
+    get(catRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+
+                const categoryContainer = document.querySelector('.show_category');
+                categoryContainer.innerHTML = ""; // Clear previous content
+
+                // Loop through the data and create HTML elements
+                for (const key in data) {
+                    const category = data[key].category;
+
+                    const categoryItem = document.createElement('div');
+                    categoryItem.classList.add('category_item');
+
+                    const categoryImg = document.createElement('img');
+                    categoryImg.src = "assets/categortimg.png";
+                    categoryImg.classList.add('category_img');
+                    categoryImg.alt = "category_img";
+
+                    const categoryName = document.createElement('p');
+                    categoryName.classList.add('category_name');
+                    categoryName.textContent = category;
+
+                    categoryItem.appendChild(categoryImg);
+                    categoryItem.appendChild(categoryName);
+
+                    categoryContainer.appendChild(categoryItem);
+                }
+            } else {
+                console.log("No data found");
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+}
+
+// Call the DisplayData function
+Displaycat();
+    </script>
+</body>
+</html>

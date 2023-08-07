@@ -1,0 +1,129 @@
+@import url(https://fonts.googleapis.com/css?family=Inter);
+
+
+*
+{
+    box-sizing: border-box;
+    padding: 0%;
+    margin: 0%;
+    font-family: "Inter";
+
+}
+.container-main-signup
+{
+   
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.form-signup
+{
+    height: 30%;
+
+   
+    width: 30%;
+ 
+}
+.input_fields
+{
+    border-bottom: 1px solid black;
+    display:flex;
+    height: 40px;
+   margin-top: 5px;
+   padding: 2px;
+    align-items:  end;
+    justify-content: space-between;
+
+}
+.green_name
+{
+    color: #61B846;
+    font-family: Inter;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px; /* 71.429% */
+}
+.blue_name
+{
+    color: #024F9D;
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 25px; /* 125% */
+}
+.name_logo{
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+}
+.signup_input
+{
+    height: 30px;
+    border: none;
+    width: 90%;
+    background-color: transparent;
+    outline: none;
+}
+.icon
+{
+    color: gray;
+}
+.submit_btn
+{
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+background-color: #61B846;
+box-shadow: 0px 4px 4px 5px #D4D3D3;
+border: none;
+color: white;
+cursor: pointer;
+}
+.login_redirect
+{
+    color: #024F9D;
+font-family: Inter;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+
+}
+.forget
+{
+    color: #024F9D;
+font-family: Inter;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; /* 166.667% */
+}
+.form-login
+{
+    height: 10%;
+ 
+   
+    width: 30%;
+ 
+}
+@media only screen and (max-width: 480px) {
+    .form-signup
+    {
+        height: 30%;
+        width: 100%;
+       
+    
+        padding: 10px;
+     
+    }
+    .form-login {
+        height: 30%;
+        width: 100%;
+        padding: 10px;
+       
+    }
+  }
