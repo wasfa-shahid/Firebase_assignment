@@ -36,8 +36,7 @@
 
     <script type="module">
         // Your web app's Firebase configuration
-       // Your web app's Firebase configuration
-       const firebaseConfig = {
+        const firebaseConfig = {
       apiKey: "AIzaSyCgdS66n6zsQLMwJeZdvKdt0on-lHzBUEE",
       authDomain: "fir-assignment-a4ff5.firebaseapp.com",
       projectId: "fir-assignment-a4ff5",
@@ -45,9 +44,9 @@
       messagingSenderId: "162057083582",
       appId: "1:162057083582:web:30d7249898faa282325cef"
     };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
         // Get references to the email, password input fields, and the sign-in button
         const emailInput = document.getElementById("emailInput");
@@ -57,11 +56,8 @@ firebase.initializeApp(firebaseConfig);
 
         // Function to handle user sign-in
         function signIn() {
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    
-    console.log("Email:", email);
-    console.log("Password:", password);
+            const email = emailInput.value;
+            const password = passwordInput.value;
 
             // Use the Firebase Authentication API to sign in with email and password
             firebase.auth().signInWithEmailAndPassword(email, password)
@@ -73,10 +69,10 @@ firebase.initializeApp(firebaseConfig);
                     window.location.href = "Home.html";
                 })
                 .catch((error) => {
-    console.error("Login failed:", error);
-    alert("Login failed: " + error.message);
-});
-
+                    // Handle errors here
+                    const errorMessage = error.message;
+                    alert("Login failed: " + errorMessage);
+                });
         }
 
         // Toggle password visibility function (your existing code remains the same)
